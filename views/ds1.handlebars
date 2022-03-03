@@ -1,0 +1,34 @@
+<h1>CoronaVirus Country Wise Data</h1>
+<div class="wrapper">
+    <div class="menu">
+		<select id="name">
+        {{#each info as |val key| }}
+			<option value="{{val.countryInfo._id}}">{{val.country}}</option>
+        {{/each}}
+		</select>
+	</div>
+
+
+    <div class="content">
+    {{#each info as |val key| }}
+        <div id="{{val.countryInfo._id}}" class="data">
+        <p class="name"><b>{{val.country}}</b></p>
+        <p><b>Total Cases: </b><span>{{val.cases}}</span></p>
+        <p><b>Total Recovered:</b><span>{{val.recovered}}</span></p>
+        <p><b>Total Deaths:</b><span>{{val.deaths}}</span></p>
+
+        <img class="image" src="{{val.countryInfo.flag}}" alt="{{val.country}} national flag"><br>
+        </div>
+    {{/each}}
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#name").on('change',function() {
+            $(".data").hide();
+            $("#" + $(this).val()).fadeIn(700);
+        }).change();
+    });
+</script>
